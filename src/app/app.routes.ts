@@ -11,6 +11,7 @@ import { DashboardComponent } from './admin/pages/dashboard';
 import { AdminLayoutComponent } from './admin/layout/admin-layout';
 import { CustomersComponent } from './admin/pages/customers';
 import { SuppliersComponent } from './admin/pages/suppliers';
+import { ProductsComponent } from './admin/pages/products';
 @Component({
   standalone:true,
   template:`<h2 style="padding:40px">Coming Soon</h2>`
@@ -29,7 +30,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'customers', component: CustomersComponent },
       { path: 'suppliers', component: SuppliersComponent },
-      { path: 'products', component: PlaceholderComponent },
+      { path: 'products', component: ProductsComponent },
       { path: 'orders', component: PlaceholderComponent },
       { path: 'reports', component: PlaceholderComponent },
       { path: 'profile', component: PlaceholderComponent }

@@ -1,0 +1,147 @@
+<h1 class="title">Product Management</h1>
+
+<!-- ================= ACTION CARDS ================= -->
+<div class="cards">
+  <div class="card" (click)="show('VIEW')">📦 View Products</div>
+  <div class="card" (click)="show('ADD_CATEGORY')">➕ Add Category</div>
+  <div class="card" (click)="show('ADD_PRODUCT')">➕ Add Product</div>
+  <!-- Update uses View + Edit button -->
+  <div class="card" (click)="show('VIEW')">✏️ Update Product</div>
+  <div class="card" (click)="show('DELETE_PRODUCT')">🗑️ Delete Product</div>
+</div>
+
+<!-- ================= VIEW PRODUCTS ================= -->
+<div *ngIf="activeSection === 'VIEW'" class="view-section">
+
+  <div class="view-header">
+    <h3>Products</h3>
+
+    <select [(ngModel)]="selectedCategoryId">
+      <option [ngValue]="null">All Categories</option>
+      <option *ngFor="let c of categories" [ngValue]="c.id">
+        {{ c.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let p of filteredProducts()">
+
+      <div class="product-title">{{ p.name }}</div>
+
+      <div class="product-category">
+        {{ p.category }}
+      </div>
+
+      <div class="product-price">
+        ₹ {{ p.price }}
+      </div>
+
+      <!-- ✅ EDIT BUTTON (TRIGGERS UPDATE FLOW) -->
+      <button class="edit-btn" (click)="editProduct(p)">
+        Edit
+      </button>
+
+    </div>
+  </div>
+
+  <p *ngIf="filteredProducts().length === 0" class="empty">
+    No products found for this category
+  </p>
+</div>
+
+<!-- ================= ADD CATEGORY ================= -->
+<div *ngIf="activeSection === 'ADD_CATEGORY'" class="section">
+  <h3>Add Category</h3>
+
+  <input
+    type="text"
+    placeholder="Category Name"
+    [(ngModel)]="newCategory.name"
+  />
+
+  <input
+    type="text"
+    placeholder="Description"
+    [(ngModel)]="newCategory.description"
+  />
+
+  <button (click)="addCategory()">Add Category</button>
+</div>
+
+<!-- ================= ADD / UPDATE PRODUCT ================= -->
+<div
+  *ngIf="activeSection === 'ADD_PRODUCT' || activeSection === 'UPDATE_PRODUCT'"
+  class="section"
+>
+  <h3>{{ isEditMode ? 'Update Product' : 'Add Product' }}</h3>
+
+  <input
+    type="text"
+    placeholder="Product Name"
+    [(ngModel)]="productForm.name"
+  />
+
+  <input
+    type="text"
+    placeholder="Description"
+    [(ngModel)]="productForm.description"
+  />
+
+  <input
+    type="number"
+    placeholder="Price"
+    [(ngModel)]="productForm.price"
+  />
+
+  <select [(ngModel)]="productForm.categoryId">
+    <option [ngValue]="null">Select Category</option>
+    <option *ngFor="let c of categories" [ngValue]="c.id">
+      {{ c.name }}
+    </option>
+  </select>
+
+  <button (click)="saveProduct()">
+    {{ isEditMode ? 'Update Product' : 'Add Product' }}
+  </button>
+
+  <button *ngIf="isEditMode" class="cancel" (click)="resetForm()">
+    Cancel
+  </button>
+</div>
+
+<!-- ================= DELETE PRODUCT ================= -->
+<div *ngIf="activeSection === 'DELETE_PRODUCT'" class="delete-section">
+
+  <h3 class="delete-title">Delete Products</h3>
+  <p class="delete-warning">
+    ⚠️ Deleting a product is permanent. Please proceed carefully.
+  </p>
+
+  <div class="delete-table-wrapper">
+    <table class="delete-table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let p of products">
+          <td>{{ p.name }}</td>
+          <td>
+            <span class="category-badge">{{ p.category }}</span>
+          </td>
+          <td>
+            <button class="delete-btn" (click)="deleteProduct(p.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
