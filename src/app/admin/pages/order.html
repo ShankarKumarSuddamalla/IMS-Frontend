@@ -1,0 +1,67 @@
+<h1 class="title">Orders</h1>
+
+<!-- ORDERS LIST -->
+<div class="orders-table">
+
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer Email</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Total Amount</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>#{{ order.id }}</td>
+        <td>{{ order.customerEmail }}</td>
+        <td>{{ order.orderDate | date:'medium' }}</td>
+        <td>
+          <span class="status">{{ order.status }}</span>
+        </td>
+        <td>₹ {{ order.totalAmount }}</td>
+        <td>
+          <button class="view-btn" (click)="viewOrder(order)">
+            View
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>
+
+<!-- ORDER DETAILS MODAL -->
+<div class="modal" *ngIf="selectedOrder">
+
+  <div class="modal-content">
+    <h3>Order #{{ selectedOrder.id }}</h3>
+
+    <p><b>Customer:</b> {{ selectedOrder.customerEmail }}</p>
+    <p><b>Status:</b> {{ selectedOrder.status }}</p>
+    <p><b>Total:</b> ₹ {{ selectedOrder.totalAmount }}</p>
+
+    <table class="items-table">
+      <tr>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>SubTotal</th>
+      </tr>
+      <tr *ngFor="let item of selectedOrder.items">
+        <td>{{ item.productName }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>₹ {{ item.price }}</td>
+        <td>₹ {{ item.subTotal }}</td>
+      </tr>
+    </table>
+
+    <button class="close-btn" (click)="closeDetails()">Close</button>
+  </div>
+
+</div>

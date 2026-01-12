@@ -1,0 +1,19 @@
+<h1 class="title">Download Report</h1>
+
+<div class="report-card">
+  <p>
+    Download a complete system report including:
+  </p>
+
+  <ul>
+    <li>✔ Customers</li>
+    <li>✔ Suppliers</li>
+    <li>✔ Products</li>
+    <li>✔ Inventory</li>
+    <li>✔ Orders</li>
+  </ul>
+
+  <button (click)="downloadReport()" [disabled]="loading">
+    {{ loading ? 'Generating Report...' : 'Download Report (PDF)' }}
+  </button>
+</div>
