@@ -1,0 +1,29 @@
+.orders {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.order-card {
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.row {
+  margin-bottom: 6px;
+}
+
+.status {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.items {
+  margin-top: 12px;
+}
+
+.items ul {
+  padding-left: 16px;
+}

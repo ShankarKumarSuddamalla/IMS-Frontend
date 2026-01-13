@@ -5,7 +5,7 @@ import { Order } from '../../models/order.model';
 
 @Component({
   selector: 'app-customer-orders',
-  standalone: true,
+ 
   imports: [CommonModule],
   templateUrl: './orders.html',
   styleUrls: ['./orders.css']

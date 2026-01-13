@@ -26,7 +26,6 @@ export class CustomerCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCart();
-    console.log('Cart items: ',this.cartItems);
   }
 
   loadCart() {
