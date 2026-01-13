@@ -1,0 +1,33 @@
+<h2>Products</h2>
+
+<!-- CATEGORY FILTER -->
+<div class="filter">
+  <select [(ngModel)]="selectedCategory">
+    <option value="">All Categories</option>
+    <option *ngFor="let c of categories" [value]="c.name">
+      {{ c.name }}
+    </option>
+  </select>
+</div>
+
+<!-- LOADING -->
+<p *ngIf="loading">Loading products...</p>
+
+<!-- PRODUCTS GRID -->
+<div class="grid">
+
+  <div class="card" *ngFor="let p of filteredProducts()">
+    <h3>{{ p.name }}</h3>
+    <p class="category">{{ p.category }}</p>
+    <p class="price">₹ {{ p.price }}</p>
+
+    <button (click)="addToCart(p)">
+      Add to Cart
+    </button>
+  </div>
+
+</div>
+
+<p *ngIf="!loading && filteredProducts().length === 0">
+  No products found.
+</p>

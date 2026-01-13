@@ -1,0 +1,40 @@
+<h2>My Orders</h2>
+
+<p *ngIf="loading">Loading orders...</p>
+<p *ngIf="error">{{ error }}</p>
+
+<p *ngIf="!loading && orders.length === 0">
+  You have not placed any orders yet.
+</p>
+
+<div class="orders" *ngIf="orders.length > 0">
+  <div class="order-card" *ngFor="let o of orders">
+
+    <div class="row">
+      <strong>Order ID:</strong> {{ o.id }}
+    </div>
+
+    <div class="row">
+      <strong>Date:</strong> {{ o.orderDate | date:'medium' }}
+    </div>
+
+    <div class="row">
+      <strong>Status:</strong>
+      <span class="status">{{ o.status }}</span>
+    </div>
+
+    <div class="row">
+      <strong>Total:</strong> ₹ {{ o.totalAmount }}
+    </div>
+
+    <div class="items">
+      <h4>Items</h4>
+      <ul>
+        <li *ngFor="let i of o.items">
+          {{ i.productName }} × {{ i.quantity }}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

@@ -14,6 +14,7 @@ import { SuppliersComponent } from './admin/pages/suppliers';
 import { ProductsComponent } from './admin/pages/products';
 import { OrdersComponent } from './admin/pages/order';
 import { ReportComponent } from './admin/pages/report';
+import { CUSTOMER_ROUTES } from './customer/customer.routes';
 @Component({
   standalone:true,
   template:`<h2 style="padding:40px">Coming Soon</h2>`
@@ -37,11 +38,7 @@ export const routes: Routes = [
       { path: 'reports', component: ReportComponent },
     ]
   },
-  { 
-    path: 'customer/products',
-    component:PlaceholderComponent,
-    canActivate:[AuthGuard,CustomerGuard]
-  },
+  ...CUSTOMER_ROUTES,
   { 
     path: 'supplier/dashboard',
     component:PlaceholderComponent,

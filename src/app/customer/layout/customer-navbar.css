@@ -1,0 +1,46 @@
+.customer-container {
+  min-height: 100vh;
+  background: #020617;
+  color: #e5e7eb;
+}
+
+/* NAVBAR */
+.navbar {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.left span {
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.center a {
+  margin: 0 12px;
+  padding: 6px 14px;
+  text-decoration: none;
+  color: #e5e7eb;
+  border-radius: 6px;
+}
+
+.center a:hover,
+.center a.active {
+  background: #1e293b;
+}
+
+.right button {
+  background: #ef4444;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* BODY */
+.content {
+  padding: 24px;
+}

@@ -1,0 +1,33 @@
+<div class="customer-container">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+
+    <div class="left">
+      Welcome, <span>{{ customerName }}</span>
+    </div>
+
+    <div class="center">
+      <a routerLink="/customer/products" routerLinkActive="active">
+        Products
+      </a>
+      <a routerLink="/customer/cart" routerLinkActive="active">
+        Cart
+      </a>
+      <a routerLink="/customer/orders" routerLinkActive="active">
+        My Orders
+      </a>
+    </div>
+
+    <div class="right">
+      <button (click)="logout()">Logout</button>
+    </div>
+
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

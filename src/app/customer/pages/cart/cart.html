@@ -1,0 +1,42 @@
+<h2>My Cart</h2>
+
+<p *ngIf="cartItems.length === 0">
+  Your cart is empty.
+</p>
+
+<table *ngIf="cartItems.length > 0" class="cart-table">
+  <tr>
+    <th>Product</th>
+    <th>Price</th>
+    <th>Qty</th>
+    <th>Subtotal</th>
+    <th>Action</th>
+  </tr>
+
+  <tr *ngFor="let item of cartItems">
+    <td>{{ item.product.name }}</td>
+    <td>₹ {{ item.product.price }}</td>
+
+    <td class="qty">
+      <button (click)="decrease(item.product.id)">−</button>
+      {{ item.quantity }}
+      <button (click)="increase(item.product.id)">+</button>
+    </td>
+
+    <td>₹ {{ item.product.price * item.quantity }}</td>
+
+    <td>
+      <button class="remove" (click)="remove(item.product.id)">
+        Remove
+      </button>
+    </td>
+  </tr>
+</table>
+
+<div class="summary" *ngIf="cartItems.length > 0">
+  <h3>Total: ₹ {{ total() }}</h3>
+
+  <button class="order-btn" [disabled]="placingOrder" (click)="placeOrder()">
+    {{placingOrder ? 'Placing Order...' : 'Place Order'}}
+  </button>
+</div>
